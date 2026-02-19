@@ -4,7 +4,6 @@
 .env.*.local
 
 # Data files
-*.json
 *.csv
 *.xlsx
 *.xls
@@ -63,8 +62,7 @@ htmlcov/
 !README.md
 !README*.md
 
-*.json
-*.jsonl
+other
 data
 url_files
 url_scrapes
