@@ -377,9 +377,15 @@ def convert_wikitext_to_markdown(wikitext: str) -> str:
     # Handle external links [url text]
     text = re.sub(r'\[([^\s]+) ([^\]]+)\]', r'[\2](\1)', text)
 
-    # Handle citations - remove them for cleaner display (they're in the references section)
-    text = re.sub(r'<ref\s+name="([^"]+)"[^>]*>(.*?)</ref>', '', text)
-    text = re.sub(r'<ref\s+name="([^"]+)"\s*/>', '', text)
+    # Handle citations - convert to superscript links to references section
+    # For <ref name="R1">...</ref> and <ref name="R1"/>
+    def citation_to_link(match):
+        ref_name = match.group(1)
+        return f'<sup>[{ref_name}](#ref-{ref_name})</sup>'
+
+    # Apply both patterns - order matters, do full tags before self-closing
+    text = re.sub(r'<ref\s+name="([^"]+)"[^>]*>.*?</ref>', citation_to_link, text)
+    text = re.sub(r'<ref\s+name="([^"]+)"\s*/>', citation_to_link, text)
 
     return text
 
@@ -437,7 +443,7 @@ def main():
 
         if lead_text:
             lead_md = convert_wikitext_to_markdown(lead_text)
-            st.markdown(lead_md)
+            st.markdown(lead_md, unsafe_allow_html=True)
             st.markdown("---")
 
         # All sections go in the left column
@@ -459,7 +465,7 @@ def main():
             # Display section content
             if wikitext:
                 section_md = convert_wikitext_to_markdown(wikitext)
-                st.markdown(section_md)
+                st.markdown(section_md, unsafe_allow_html=True)
 
             # Display subsections if present
             subsections = section.get('subsections', [])
@@ -472,20 +478,24 @@ def main():
 
                 if sub_wikitext:
                     sub_md = convert_wikitext_to_markdown(sub_wikitext)
-                    st.markdown(sub_md)
+                    st.markdown(sub_md, unsafe_allow_html=True)
 
         # References section
         st.header("References")
         if references_dict:
             st.markdown(f"*{len(references_dict)} references*")
-            with st.expander("View all references"):
-                for ref_id, ref_data in sorted(references_dict.items()):
-                    ref_title = ref_data.get('title', 'Untitled')
-                    url = ref_data.get('url', '')
-                    if url:
-                        st.markdown(f"**[{ref_id}]** [{ref_title}]({url})")
-                    else:
-                        st.markdown(f"**[{ref_id}]** {ref_title}")
+            st.markdown("")
+
+            # Display references with anchor IDs for linking
+            for ref_id, ref_data in sorted(references_dict.items()):
+                ref_title = ref_data.get('title', 'Untitled')
+                url = ref_data.get('url', '')
+
+                # Add anchor ID for this reference
+                if url:
+                    st.markdown(f'<span id="ref-{ref_id}"></span>**[{ref_id}]** [{ref_title}]({url})', unsafe_allow_html=True)
+                else:
+                    st.markdown(f'<span id="ref-{ref_id}"></span>**[{ref_id}]** {ref_title}', unsafe_allow_html=True)
 
         # External links section
         external_links = page_draft.get('external_links', [])
