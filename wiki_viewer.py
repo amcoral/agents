@@ -391,15 +391,59 @@ def convert_wikitext_to_markdown(wikitext: str) -> str:
 
 
 def main():
-    # Load the page draft
+    # Initialize session state for version selection (default to latest version)
+    if 'selected_version' not in st.session_state:
+        st.session_state.selected_version = 'version3'
+
+    # Version configurations (ordered from newest to oldest)
+    versions = {
+        'version3': {
+            'file': 'final_page_draft4.json',
+            'label': 'Version 3',
+            'date': '10:45 20/02/2026'
+        },
+        'version2': {
+            'file': 'final_page_draft2.json',
+            'label': 'Version 2',
+            'date': '19:00 19/02/2026'
+        },
+        'version1': {
+            'file': 'final_page_draft.json',
+            'label': 'Version 1',
+            'date': '18:00 19/02/2026'
+        }
+    }
+
+    # Display version selector in sidebar
+    with st.sidebar:
+        st.header("📄 Draft Versions")
+
+        for version_key, version_info in versions.items():
+            # Create button for each version
+            is_selected = st.session_state.selected_version == version_key
+            button_label = f"{'✓ ' if is_selected else ''}{version_info['label']}"
+
+            if st.button(button_label, key=f"btn_{version_key}", use_container_width=True):
+                st.session_state.selected_version = version_key
+                st.rerun()
+
+            # Show date below button
+            if is_selected:
+                st.caption(f"📅 {version_info['date']}")
+
+        st.markdown("---")
+
+    # Load the selected version's page draft
+    selected_file = versions[st.session_state.selected_version]['file']
+
     try:
-        with open("final_page_draft.json", "r") as f:
+        with open(selected_file, "r") as f:
             page_draft = json.load(f)
     except FileNotFoundError:
-        st.error("Could not find final_page_draft.json. Please make sure the file exists.")
+        st.error(f"Could not find {selected_file}. Please make sure the file exists.")
         return
     except json.JSONDecodeError:
-        st.error("Error parsing final_page_draft.json. Please make sure it's valid JSON.")
+        st.error(f"Error parsing {selected_file}. Please make sure it's valid JSON.")
         return
 
     # Display page info in sidebar
