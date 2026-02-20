@@ -391,28 +391,75 @@ def convert_wikitext_to_markdown(wikitext: str) -> str:
 
 
 def main():
-    # Initialize session state for version selection (default to latest version)
-    if 'selected_version' not in st.session_state:
-        st.session_state.selected_version = 'version3'
+    import glob
+    import os
+    from datetime import datetime
 
-    # Version configurations (ordered from newest to oldest)
-    versions = {
-        'version3': {
-            'file': 'final_page_draft4.json',
-            'label': 'Version 3',
-            'date': '10:45 20/02/2026'
-        },
-        'version2': {
-            'file': 'final_page_draft2.json',
-            'label': 'Version 2',
-            'date': '19:00 19/02/2026'
-        },
-        'version1': {
-            'file': 'final_page_draft.json',
-            'label': 'Version 1',
-            'date': '18:00 19/02/2026'
+    # Discover all page draft files dynamically
+    draft_files = []
+
+    # Find final_page_draft.json (version 1)
+    if os.path.exists('final_page_draft.json'):
+        draft_files.append(('final_page_draft.json', 1))
+
+    # Find final_page_draft<N>.json files
+    for filepath in glob.glob('final_page_draft*.json'):
+        filename = os.path.basename(filepath)
+        if filename == 'final_page_draft.json':
+            continue
+        # Extract number from filename
+        match = re.search(r'final_page_draft(\d+)\.json', filename)
+        if match:
+            num = int(match.group(1))
+            draft_files.append((filename, num))
+
+    # Sort by version number (highest first)
+    draft_files.sort(key=lambda x: x[1], reverse=True)
+
+    # Build versions dictionary
+    versions = {}
+    for filename, version_num in draft_files:
+        version_key = f'version{version_num}'
+
+        # Try to get metadata from file
+        try:
+            with open(filename, 'r') as f:
+                data = json.load(f)
+            last_updated = data.get('last_updated_utc', 'Unknown')
+            page_version = data.get('page_version', '?')
+
+            # Format the date nicely if available
+            if last_updated != 'Unknown':
+                try:
+                    dt = datetime.fromisoformat(last_updated.replace('Z', '+00:00'))
+                    date_str = dt.strftime('%H:%M %d/%m/%Y')
+                except:
+                    date_str = last_updated
+            else:
+                date_str = 'Unknown'
+        except:
+            date_str = 'Unknown'
+            page_version = '?'
+
+        versions[version_key] = {
+            'file': filename,
+            'label': f'Version {version_num}',
+            'date': date_str,
+            'page_version': page_version
         }
-    }
+
+    # Initialize session state with highest version as default
+    if draft_files:
+        default_version = f'version{draft_files[0][1]}'
+    else:
+        default_version = 'version1'
+
+    if 'selected_version' not in st.session_state:
+        st.session_state.selected_version = default_version
+
+    # Make sure selected version still exists
+    if st.session_state.selected_version not in versions:
+        st.session_state.selected_version = default_version
 
     # Display version selector in sidebar
     with st.sidebar:
@@ -427,14 +474,19 @@ def main():
                 st.session_state.selected_version = version_key
                 st.rerun()
 
-            # Show date below button
+            # Show date and page version below button
             if is_selected:
                 st.caption(f"📅 {version_info['date']}")
+                st.caption(f"📄 Page v{version_info['page_version']}")
 
         st.markdown("---")
 
     # Load the selected version's page draft
-    selected_file = versions[st.session_state.selected_version]['file']
+    if st.session_state.selected_version in versions:
+        selected_file = versions[st.session_state.selected_version]['file']
+    else:
+        st.error(f"Version {st.session_state.selected_version} not found")
+        return
 
     try:
         with open(selected_file, "r") as f:
