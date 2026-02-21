@@ -395,7 +395,38 @@ def main():
     import os
     from datetime import datetime
 
-    # Discover all page draft files dynamically
+    # Check for final draft (non-versioned)
+    has_final_draft = os.path.exists('finaldraft.json')
+    final_draft_info = None
+
+    if has_final_draft:
+        try:
+            with open('finaldraft.json', 'r') as f:
+                data = json.load(f)
+            last_updated = data.get('last_updated_utc', 'Unknown')
+            page_version = data.get('page_version', '?')
+
+            # Format the date nicely if available
+            if last_updated != 'Unknown':
+                try:
+                    dt = datetime.fromisoformat(last_updated.replace('Z', '+00:00'))
+                    date_str = dt.strftime('%H:%M %d/%m/%Y')
+                except:
+                    date_str = last_updated
+            else:
+                date_str = 'Unknown'
+        except:
+            date_str = 'Unknown'
+            page_version = '?'
+
+        final_draft_info = {
+            'file': 'finaldraft.json',
+            'label': 'Final Draft',
+            'date': date_str,
+            'page_version': page_version
+        }
+
+    # Discover all numbered page draft files dynamically
     draft_files = []
 
     # Find final_page_draft.json (version 1)
@@ -416,7 +447,7 @@ def main():
     # Sort by version number (highest first)
     draft_files.sort(key=lambda x: x[1], reverse=True)
 
-    # Build versions dictionary
+    # Build versions dictionary for numbered drafts
     versions = {}
     for filename, version_num in draft_files:
         version_key = f'version{version_num}'
@@ -448,8 +479,10 @@ def main():
             'page_version': page_version
         }
 
-    # Initialize session state with highest version as default
-    if draft_files:
+    # Initialize session state with final draft as default if it exists, otherwise highest version
+    if has_final_draft:
+        default_version = 'final_draft'
+    elif draft_files:
         default_version = f'version{draft_files[0][1]}'
     else:
         default_version = 'version1'
@@ -458,13 +491,34 @@ def main():
         st.session_state.selected_version = default_version
 
     # Make sure selected version still exists
-    if st.session_state.selected_version not in versions:
+    if st.session_state.selected_version == 'final_draft' and not has_final_draft:
+        st.session_state.selected_version = default_version
+    elif st.session_state.selected_version != 'final_draft' and st.session_state.selected_version not in versions:
         st.session_state.selected_version = default_version
 
     # Display version selector in sidebar
     with st.sidebar:
         st.header("📄 Draft Versions")
 
+        # Show final draft at the top if it exists
+        if has_final_draft:
+            is_selected = st.session_state.selected_version == 'final_draft'
+            button_label = f"{'✓ ' if is_selected else ''}{final_draft_info['label']}"
+
+            if st.button(button_label, key="btn_final_draft", use_container_width=True):
+                st.session_state.selected_version = 'final_draft'
+                st.rerun()
+
+            # Show date and page version below button
+            if is_selected:
+                st.caption(f"📅 {final_draft_info['date']}")
+                st.caption(f"📄 Page v{final_draft_info['page_version']}")
+
+            # Divider between final draft and previous versions
+            st.markdown("---")
+            st.markdown("**Previous Versions**")
+
+        # Show numbered versions
         for version_key, version_info in versions.items():
             # Create button for each version
             is_selected = st.session_state.selected_version == version_key
@@ -482,7 +536,9 @@ def main():
         st.markdown("---")
 
     # Load the selected version's page draft
-    if st.session_state.selected_version in versions:
+    if st.session_state.selected_version == 'final_draft':
+        selected_file = 'finaldraft.json'
+    elif st.session_state.selected_version in versions:
         selected_file = versions[st.session_state.selected_version]['file']
     else:
         st.error(f"Version {st.session_state.selected_version} not found")
