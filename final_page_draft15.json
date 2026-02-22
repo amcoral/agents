@@ -1,13 +1,14 @@
 {
-	"page_version": "Final",
-	"title": "Ketan Patel - Submission Version",
+	"page_version": 15,
+	"title": "Ketan Patel",
 	"status": "draft",
-	"last_updated_utc": "2026-02-22T14:50:45Z",
+	"last_updated_utc": "2026-02-22T13:29:20Z",
 	"infobox": {
 		"template": "Infobox person",
 		"fields": {
 			"name": "Ketan Patel",
 			"birth_date": "February 1962",
+			"birth_place": "India",
 			"nationality": "British",
 			"occupation": "Investor; strategist; author",
 			"known_for": "Co-founder and CEO of Greater Pacific Capital; founder and chair of the Force for Good Initiative; lead of a UNCTAD-hosted Future Capital working group on the future of finance",
@@ -16,7 +17,7 @@
 			"organization": "Greater Pacific Capital; Force for Good Initiative"
 		}
 	},
-	"lead": "'''Ketan Patel''' (born February 1962) is a British investor, strategist and author.<ref name=\"R186\" /> He is the chief executive and co-founder of the investment firm ''Greater Pacific Capital'' (GPC) and the founder and chairman of the Force for Good Initiative, which publishes research on investment, technology and sustainable development.<ref name=\"R147\" /><ref name=\"R187\" /><ref name=\"R188\" /><ref name=\"R180\" />\n\nPatel was a managing director at Goldman Sachs, where he founded and led the bank's Strategic Group.<ref name=\"R220\" /><ref name=\"R58\" /><ref name=\"R211\" /><ref name=\"R212\" /> He previously served as a partner at KPMG, leading its European strategy consultancy and serving on the firm's board and European strategy team.<ref name=\"R220\" /><ref name=\"R58\" /><ref name=\"R62\" /><ref name=\"R207\" />\n\nPatel's published work addresses system-level transitions in geopolitics, technology and development, and their implications for governments, investors and large enterprises, in outlets including ''Frontiers'' journals, ''Cadmus'' and Reuters.<ref name=\"R174\" /><ref name=\"R197\" /><ref name=\"R161\" /><ref name=\"R188\" /><ref name=\"R189\" />. He is an executive director and trustee of the World Academy of Art and Science (WAAS).<ref name=\"R226\" /><ref name=\"R227\" />\n\nPatel is the author of ''The Master Strategist'' (2005).<ref name=\"R216\" /><ref name=\"R181\" /> The book has been reviewed in ''Business Standard'' and ''IMFO'' and carried an endorsement quotation attributed to Nelson Mandela.<ref name=\"R210\" /><ref name=\"R218\" /><ref name=\"R185\" />\n",
+	"lead": "'''Ketan Patel''' (born February 1962) is a British investor, strategist and author.<ref name=\"R186\" /> He is the chief executive and co-founder of the private equity firm ''Greater Pacific Capital'' (GPC) and the founder and chairman of the Force for Good Initiative, which publishes research on investment, technology and sustainable development.<ref name=\"R147\" /><ref name=\"R187\" /><ref name=\"R188\" /><ref name=\"R180\" />\n\nPatel was a managing director at Goldman Sachs, where he founded and led the bank's Strategic Group.<ref name=\"R220\" /><ref name=\"R58\" /><ref name=\"R211\" /><ref name=\"R212\" /> He previously served as a partner at KPMG, leading its European strategy consultancy and serving on the firm's board and European strategy team.<ref name=\"R220\" /><ref name=\"R58\" /><ref name=\"R62\" /><ref name=\"R207\" />\n\nPatel's published work addresses system-level transitions in geopolitics, technology and development, and their implications for governments, investors and large enterprises, in outlets including ''Frontiers'' journals, ''Cadmus'' and Reuters.<ref name=\"R174\" /><ref name=\"R197\" /><ref name=\"R161\" /><ref name=\"R188\" /><ref name=\"R189\" />\n\nPatel is the author of ''The Master Strategist'' (2005).<ref name=\"R216\" /><ref name=\"R181\" /> The book has been reviewed in ''Business Standard'' and ''IMFO'' and carried an endorsement quotation attributed to Nelson Mandela.<ref name=\"R210\" /><ref name=\"R218\" /><ref name=\"R185\" />\n",
 	"sections": [
 		{
 			"heading": "Early life and education",
@@ -24,7 +25,11 @@
 		},
 		{
 			"heading": "Career",
-			"wikitext": "===Hewlett-Packard and KPMG===\nPatel worked at Hewlett-Packard and later joined KPMG.<ref name=\"R207\" /> At KPMG he led the firm's European strategy consultancy, became a partner, and served on the firm's board and European strategy team.<ref name=\"R220\" /><ref name=\"R58\" /><ref name=\"R62\" /><ref name=\"R207\" />\n\n===Goldman Sachs===\nPatel was a managing director in Goldman Sachs' investment banking division, where he founded and led the bank's Strategic Group.<ref name=\"R220\" /><ref name=\"R58\" /><ref name=\"R211\" /><ref name=\"R212\" /> In 2003, ''The Globe and Mail'' referred to him as Goldman Sachs' “chief futurologist”.<ref name=\"R220\" /> He said the group's role was to show clients \"how to leapfrog the world, not catch up\".<ref name=\"R220\" />\n\n===Greater Pacific Capital===\nIn 2005, Patel left Goldman Sachs and co-founded the London-based investment firm Greater Pacific Capital, where he serves as chief executive.<ref name=\"R187\" /><ref name=\"R211\" /><ref name=\"R221\" /> In 2007, the ''Financial Times'' reported that Greater Pacific Capital was bidding jointly with Torrent Pharmaceuticals for Merck's generics business, a transaction described as a US$5 billion deal.<ref name=\"R223\" /> In 2014, ''Mint'' reported that a GPC India-focused fund reached a first close of US$300 million toward a US$700 million target.<ref name=\"R147\" /> In 2018, the U.S. Overseas Private Investment Corporation (OPIC) committed US$125 million to one of the firm's funds.<ref name=\"R202\" />\n\n===Force for Good Initiative===\nPatel founded and chairs the Force for Good Initiative, which publishes research on investment, technology and policy approaches to sustainable development.<ref name=\"R187\" /><ref name=\"R179\" /><ref name=\"R180\" /> Its report series includes ''Capital as a Force for Good'' and ''Technology as a Force for Good''.<ref name=\"R178\" /><ref name=\"R179\" /><ref name=\"R180\" /> In a 2024 Reuters commentary, Patel described the ''Capital as a Force for Good'' report as identifying scalable, existing initiatives intended to accelerate progress toward the Sustainable Development Goals.<ref name=\"R189\" /> In 2025, Force for Good published ''The World Investment Plan''; Club de Madrid described the report as proposing a US$125 trillion investment plan through 2035 and quoted Patel as the initiative's chairman.<ref name=\"R215\" /><ref name=\"R219\" /> A UNFCCC COP30 dialogues report listed Patel as a panelist as chair of Force for Good, and one session referenced an investment plan developed by the initiative.<ref name=\"R214\" />\n\n===Institutional and advisory roles===\nPatel is an executive director and trustee of the World Academy of Art and Science (WAAS) and has published in its journal ''Cadmus''.<ref name=\"R226\" /><ref name=\"R227\" /><ref name=\"R161\" /> He serves on the advisory board of the UN Business and Human Security Initiative at the London School of Economics and Political Science.<ref name=\"R193\" /> In 2019, he was asked to define and lead the finance working group for the UN-hosted Future Capital initiative, co-hosted by UN Trade and Development (UNCTAD), the UN Office for Partnerships and WAAS.<ref name=\"R195\" /> He has also been listed as a participant in WAAS's Human Security for All campaign, launched in collaboration with the UN Trust Fund for Human Security.<ref name=\"R228\" />. Patel has appeared on ''SALT Talks'', moderated a panel at the Consumer Electronics Show (CES) on technology, artificial intelligence and sustainability, and participated in UNFCCC COP30 dialogues as chair of Force for Good; he has also been listed as a speaker at the Science and Technology in Society (STS) Forum annual meeting in Kyoto.<ref name=\"R172\" /><ref name=\"R222\" /><ref name=\"R214\" /><ref name=\"R229\" />"
+			"wikitext": "===Hewlett-Packard and KPMG===\nPatel worked at Hewlett-Packard and later joined KPMG.<ref name=\"R207\" /> At KPMG he led the firm's European strategy consultancy, became a partner, and served on the firm's board and European strategy team.<ref name=\"R220\" /><ref name=\"R58\" /><ref name=\"R62\" /><ref name=\"R207\" />\n\n===Goldman Sachs===\nPatel was a managing director in Goldman Sachs' investment banking division, where he founded and led the bank's Strategic Group.<ref name=\"R220\" /><ref name=\"R58\" /><ref name=\"R211\" /><ref name=\"R212\" /> In 2003, ''The Globe and Mail'' referred to him as Goldman Sachs' “chief futurologist”.<ref name=\"R220\" /> He said the group's role was to show clients \"how to leapfrog the world, not catch up\".<ref name=\"R220\" />\n\n===Greater Pacific Capital===\nIn 2005, Patel left Goldman Sachs and co-founded the London-based private equity firm Greater Pacific Capital, where he serves as chief executive.<ref name=\"R187\" /><ref name=\"R211\" /><ref name=\"R221\" /> In 2007, the ''Financial Times'' reported that Greater Pacific Capital was bidding jointly with Torrent Pharmaceuticals for Merck's generics business, a transaction described as a US$5 billion deal.<ref name=\"R223\" /> In 2014, ''Mint'' reported that a GPC India-focused fund reached a first close of US$300 million toward a US$700 million target.<ref name=\"R147\" /> In 2018, the U.S. Overseas Private Investment Corporation (OPIC) committed US$125 million to one of the firm's funds.<ref name=\"R202\" />\n\n===Force for Good Initiative===\nPatel founded and chairs the Force for Good Initiative, which publishes research on investment, technology and policy approaches to sustainable development.<ref name=\"R187\" /><ref name=\"R179\" /><ref name=\"R180\" /> Its report series includes ''Capital as a Force for Good'' and ''Technology as a Force for Good''.<ref name=\"R178\" /><ref name=\"R179\" /><ref name=\"R180\" /> In a 2024 Reuters commentary, Patel described the ''Capital as a Force for Good'' report as identifying scalable, existing initiatives intended to accelerate progress toward the Sustainable Development Goals.<ref name=\"R189\" /> In 2025, Force for Good published ''The World Investment Plan''; Club de Madrid described the report as proposing a US$125 trillion investment plan through 2035 and quoted Patel as the initiative's chairman.<ref name=\"R215\" /><ref name=\"R219\" /> A UNFCCC COP30 dialogues report listed Patel as a panelist as chair of Force for Good, and one session referenced an investment plan developed by the initiative.<ref name=\"R214\" />\n\n===Institutional and advisory roles===\nPatel serves on the advisory board of the UN Business and Human Security Initiative at the London School of Economics and Political Science.<ref name=\"R193\" /> In 2019, he was asked to define and lead the finance working group for the UN-hosted Future Capital initiative, co-hosted by UN Trade and Development (UNCTAD), the UN Office for Partnerships and the World Academy of Art and Science.<ref name=\"R195\" />"
+		},
+		{
+			"heading": "Public speaking and media",
+			"wikitext": "Patel has appeared on ''SALT Talks'' and moderated a panel at the Consumer Electronics Show (CES) focused on technology, artificial intelligence and sustainability.<ref name=\"R172\" /><ref name=\"R222\" /> He has also participated in UNFCCC COP30 dialogues as chair of Force for Good.<ref name=\"R214\" />"
 		},
 		{
 			"heading": "Ideas and contributions",
@@ -560,62 +565,6 @@
 			"independence": "independent",
 			"reliability": "high",
 			"citation_wikitext": "{{cite news|url=https://www.ft.com/content/55644b76-9b6c-39d1-ae8a-0cd3286224a5|title=UK buy-out firm leads $5bn chase for Merck arm|work=Financial Times|date=8 May 2007|access-date=22 February 2026}}"
-		},
-		"R226": {
-			"ref_id": "R226",
-			"source_item_index": 226,
-			"url": "https://cadmusjournal.org/files/journalpdf/Vol5Issue5/vol5_issue5.pdf",
-			"title": "CADMUS, Volume 5, Issue 5 (December 2025)",
-			"publisher": "World Academy of Art and Science (Cadmus Journal)",
-			"author": null,
-			"published_date": "December 2025",
-			"access_date_utc": "2026-02-22",
-			"type": "journal_pdf",
-			"independence": "affiliated",
-			"reliability": "medium",
-			"citation_wikitext": "{{cite journal|url=https://cadmusjournal.org/files/journalpdf/Vol5Issue5/vol5_issue5.pdf|title=CADMUS, Volume 5, Issue 5 (December 2025)|journal=Cadmus Journal|publisher=World Academy of Art and Science|date=December 2025|access-date=22 February 2026}}"
-		},
-		"R227": {
-			"ref_id": "R227",
-			"source_item_index": 227,
-			"url": "https://worldacademy.org/about-us/management/",
-			"title": "Management",
-			"publisher": "World Academy of Art and Science",
-			"author": null,
-			"published_date": null,
-			"access_date_utc": "2026-02-22",
-			"type": "webpage",
-			"independence": "affiliated",
-			"reliability": "medium",
-			"citation_wikitext": "{{cite web|url=https://worldacademy.org/about-us/management/|title=Management|publisher=World Academy of Art and Science|access-date=22 February 2026}}"
-		},
-		"R228": {
-			"ref_id": "R228",
-			"source_item_index": 228,
-			"url": "https://worldacademy.org/conference-page/waas-talks-series/technology-amp-human-security/",
-			"title": "Human Security Webinar Series - Technology & Human Security",
-			"publisher": "World Academy of Art and Science",
-			"author": null,
-			"published_date": "17 May 2023",
-			"access_date_utc": "2026-02-22",
-			"type": "webpage",
-			"independence": "affiliated",
-			"reliability": "medium",
-			"citation_wikitext": "{{cite web|url=https://worldacademy.org/conference-page/waas-talks-series/technology-amp-human-security/|title=Human Security Webinar Series - Technology & Human Security|publisher=World Academy of Art and Science|date=17 May 2023|access-date=22 February 2026}}"
-		},
-		"R229": {
-			"ref_id": "R229",
-			"source_item_index": 229,
-			"url": "https://www.stsforum.org/file/2024/11/STS2024_Summary.pdf",
-			"title": "STS Forum 2024 – 21st Annual Meeting Summary",
-			"publisher": "Science and Technology in Society Forum",
-			"author": null,
-			"published_date": "9 December 2024",
-			"access_date_utc": "2026-02-22",
-			"type": "report_pdf",
-			"independence": "independent",
-			"reliability": "medium",
-			"citation_wikitext": "{{cite report|url=https://www.stsforum.org/file/2024/11/STS2024_Summary.pdf|title=STS Forum 2024 – 21st Annual Meeting Summary|publisher=Science and Technology in Society Forum|date=9 December 2024|access-date=22 February 2026}}"
 		}
 	}
 }
