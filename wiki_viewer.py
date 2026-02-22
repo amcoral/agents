@@ -578,6 +578,19 @@ def main():
         gaps = page_draft.get('gaps_to_fill', [])
         st.write(f"⚠️ Gaps to Fill: {len(gaps)}")
 
+        st.markdown("---")
+
+        # Edit mode toggle
+        st.subheader("✏️ Edit Mode")
+        edit_mode = st.checkbox("Enable Editing", key="edit_mode_toggle")
+
+        if edit_mode:
+            st.warning("⚠️ You are in edit mode. Changes can be saved as a new version.")
+
+    # Initialize edited content in session state
+    if 'edited_content' not in st.session_state:
+        st.session_state.edited_content = None
+
     # Create two-column layout: content on left, infobox on right
     col_main, col_info = st.columns([7, 3])
 
@@ -593,16 +606,41 @@ def main():
         else:
             lead_text = lead
 
+        # Initialize edited content if not already set
+        if st.session_state.edited_content is None:
+            st.session_state.edited_content = {
+                'lead': lead_text,
+                'sections': []
+            }
+
         if lead_text:
-            lead_md = convert_wikitext_to_markdown(lead_text)
-            st.markdown(lead_md, unsafe_allow_html=True)
+            if edit_mode:
+                st.markdown("**Lead Section** (editable)")
+                st.session_state.edited_content['lead'] = st.text_area(
+                    "Edit Lead",
+                    value=st.session_state.edited_content['lead'],
+                    height=200,
+                    key="lead_editor"
+                )
+            else:
+                lead_md = convert_wikitext_to_markdown(lead_text)
+                st.markdown(lead_md, unsafe_allow_html=True)
             st.markdown("---")
 
         # All sections go in the left column
         sections = page_draft.get('sections', [])
         references_dict = page_draft.get('references', {})
 
-        for section in sections:
+        # Initialize sections in edited content
+        if len(st.session_state.edited_content['sections']) == 0:
+            for section in sections:
+                st.session_state.edited_content['sections'].append({
+                    'heading': section.get('heading', ''),
+                    'wikitext': section.get('wikitext', ''),
+                    'subsections': section.get('subsections', [])
+                })
+
+        for idx, section in enumerate(sections):
             heading = section.get('heading', '')
             wikitext = section.get('wikitext', '')
 
@@ -616,8 +654,16 @@ def main():
 
             # Display section content
             if wikitext:
-                section_md = convert_wikitext_to_markdown(wikitext)
-                st.markdown(section_md, unsafe_allow_html=True)
+                if edit_mode:
+                    st.session_state.edited_content['sections'][idx]['wikitext'] = st.text_area(
+                        f"Edit: {heading}",
+                        value=st.session_state.edited_content['sections'][idx]['wikitext'],
+                        height=300,
+                        key=f"section_editor_{idx}"
+                    )
+                else:
+                    section_md = convert_wikitext_to_markdown(wikitext)
+                    st.markdown(section_md, unsafe_allow_html=True)
 
             # Display subsections if present
             subsections = section.get('subsections', [])
@@ -629,8 +675,60 @@ def main():
                     st.subheader(sub_heading)
 
                 if sub_wikitext:
-                    sub_md = convert_wikitext_to_markdown(sub_wikitext)
-                    st.markdown(sub_md, unsafe_allow_html=True)
+                    if not edit_mode:
+                        sub_md = convert_wikitext_to_markdown(sub_wikitext)
+                        st.markdown(sub_md, unsafe_allow_html=True)
+
+        # Save button for edit mode
+        if edit_mode:
+            st.markdown("---")
+            st.markdown("### 💾 Save Changes")
+
+            if st.button("Save as New Version", type="primary", use_container_width=True):
+                # Find the highest version number
+                import glob
+                max_version = 0
+
+                for filepath in glob.glob('final_page_draft*.json'):
+                    filename = os.path.basename(filepath)
+                    match = re.search(r'final_page_draft(\d+)\.json', filename)
+                    if match:
+                        num = int(match.group(1))
+                        max_version = max(max_version, num)
+
+                # Create new version number
+                new_version = max_version + 1
+                new_filename = f'final_page_draft{new_version}.json'
+
+                # Update page_draft with edited content
+                page_draft['lead'] = st.session_state.edited_content['lead']
+                for idx, section in enumerate(page_draft.get('sections', [])):
+                    if idx < len(st.session_state.edited_content['sections']):
+                        section['wikitext'] = st.session_state.edited_content['sections'][idx]['wikitext']
+
+                # Update metadata
+                from datetime import datetime
+                page_draft['page_version'] = page_draft.get('page_version', 0) + 1
+                page_draft['last_updated_utc'] = datetime.utcnow().isoformat() + 'Z'
+
+                # Save to new file
+                try:
+                    with open(new_filename, 'w') as f:
+                        json.dump(page_draft, f, indent=2)
+
+                    st.success(f"✓ Saved as {new_filename} (Version {new_version})")
+                    st.info("Refreshing page to show new version...")
+
+                    # Clear edited content and switch to new version
+                    st.session_state.edited_content = None
+                    st.session_state.selected_version = f'version{new_version}'
+
+                    # Rerun to refresh
+                    import time
+                    time.sleep(1)
+                    st.rerun()
+                except Exception as e:
+                    st.error(f"Error saving file: {e}")
 
         # References section
         st.header("References")
