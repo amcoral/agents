@@ -8,7 +8,6 @@
 		"fields": {
 			"name": "Ketan Patel",
 			"birth_date": "February 1962",
-			"birth_place": "India",
 			"nationality": "British",
 			"occupation": "Investor; strategist; author",
 			"known_for": "Co-founder and CEO of Greater Pacific Capital; founder and chair of the Force for Good Initiative; lead of a UNCTAD-hosted Future Capital working group on the future of finance",
@@ -21,7 +20,7 @@
 	"sections": [
 		{
 			"heading": "Early life and education",
-			"wikitext": "Patel was born in February 1962 in India and grew up in London.<ref name=\"R186\" /><ref name=\"R220\" /> He graduated with a BSc in Economics from the London School of Economics and completed an MBA at City University Business School.<ref name=\"R220\" /><ref name=\"R58\" /><ref name=\"R62\" /> He is an associate chartered management accountant (ACMA) and holds a postgraduate degree in neuroscience from King's College London.<ref name=\"R62\" />"
+			"wikitext": "Patel was born in February 1962 and grew up in London.<ref name=\"R186\" /><ref name=\"R220\" /> He graduated with a BSc in Economics from the London School of Economics and completed an MBA at City University Business School.<ref name=\"R220\" /><ref name=\"R58\" /><ref name=\"R62\" /> He is an associate chartered management accountant (ACMA) and holds a postgraduate degree in neuroscience from King's College London.<ref name=\"R62\" />"
 		},
 		{
 			"heading": "Career",
